@@ -22,7 +22,7 @@ connectDB();
 
 app.use(express.json());
 
-app.use('/api', routes);
+app.use('/api/admin', routes);
 
 app.get('/metrics', async (req, res) => {
     res.setHeader('Content-Type', register.contentType);
