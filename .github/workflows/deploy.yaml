@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
 
 env:
-  AWS_REGION: ap-south-1                   # Set this to your preferred AWS region, e.g. us-east-1
-  EKS_CLUSTER_NAME: call-booking-app-cluster # Set this to your EKS cluster name
+  AWS_REGION: ap-south-1                   
+  EKS_CLUSTER_NAME: call-booking-app-cluster 
   ECR_REPOSITORY_ADMIN_API: admin-api
   ECR_REPOSITORY_ADMIN_UI: admin-ui
   ECR_REPOSITORY_USER_API: user-api
