@@ -10,6 +10,8 @@ The system allows users to book calls while providing administrators with a dash
 *   **Infrastructure as Code (IaC)**: Complete AWS infrastructure (VPC, EKS, IAM, Security Groups) provisioned via **Terraform**.
 *   **Kubernetes Orchestration**: Managed via Amazon EKS with auto-scaling and self-healing capabilities.
 *   **Advanced Routing**: **AWS Application Load Balancer (ALB)** Ingress Controller handles path-based routing (`/api/user`, `/api/admin`).
+*   **Auto-scaling**: **Horizontal Pod Autoscaling (HPA)** automatically scales pods based on CPU and Memory usage.
+*   **CI/CD**: Automated deployment pipeline using **GitHub Actions**.
 *   **Containerization**: Fully Dockerized services with images stored in **AWS ECR (Elastic Container Registry)**.
 *   **Stateful Persistence**: Reliable MongoDB deployment within Kubernetes using StatefulSets and PersistentVolumes.
 *   **Monitoring**: Integrated health checks and liveness probes for high availability.
@@ -49,8 +51,9 @@ The application follows a clean microservices pattern:
 
 ## 📂 Project Structure
 ```bash
-├── terraform/          # Terraform configuration files for AWS Infrastructure
-├── kubernetes/         # Kubernetes manifests (Deployments, Services, Ingress, ConfigMaps)
+├── .github/workflows # GitHub Actions CI/CD workflows
+├── terraform/          # Terraform configuration files for AWS Infrastructure (EKS, VPC, ALB, Metrics Server)
+├── kubernetes/         # Kubernetes manifests (Deployments, Services, Ingress, HPA, ConfigMaps)
 ├── user-api/           # Backend Node.js service for User functionality
 ├── user-ui/            # Frontend React application for Users
 ├── admin-api/          # Backend Node.js service for Admin functionality
@@ -86,6 +89,10 @@ The application follows a clean microservices pattern:
     ```bash
     ./kubernetes/apply-all.sh
     ```
+    *This script applies all manifests including HPA and Ingress rules.*
+    
+5.  **CI/CD**:
+    Push changes to the `main` branch to trigger the GitHub Actions workflow, which builds images and deploys them to EKS.
 
 4.  **Access the Application**:
     Get the Load Balancer DNS to access the application.
